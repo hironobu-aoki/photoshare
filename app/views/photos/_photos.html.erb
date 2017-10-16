@@ -1,0 +1,22 @@
+<% if photos %>
+  <div class="row">
+    <% photos.each do |photo| %>
+      <div class="photo">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <img src="<%= photo.image %>" alt="" >
+            </div>
+            <div class="panel-body">
+              <p class="photo-comment"><%= photo.photo_comment %></p>
+            </div>
+            <div class="panel-under text-right" >
+              <p class="photo-created_at">Post at: <%= photo.created_at %></p>
+            </div>
+          </div>
+          <%= render 'user_likes/like_button', photo: photo %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

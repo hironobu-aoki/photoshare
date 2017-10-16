@@ -1,0 +1,13 @@
+<% unless current_user == photo.user %>
+  <% if current_user.like?(photo) %>
+    <%= form_for(current_user.user_likes.find_by(photo_id: photo.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :photo_id, photo.id %>
+      <%= f.submit 'unlike', class: 'btn btn-danger btn-block' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.user_likes.build) do |f| %>
+      <%= hidden_field_tag :photo_id, photo.id %>
+      <%= f.submit 'like!', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  <% end %>
+<% end %>

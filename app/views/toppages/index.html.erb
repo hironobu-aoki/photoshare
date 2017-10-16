@@ -1,14 +1,14 @@
-<% content_for :cover do %>
-  <div class="cover">
-    <div class="cover-inner">
-      <div class="cover-contents">
-        <h1>写真を見せよう！</h1>
-          <% unless logged_in? %>
+<% unless logged_in? %>
+  <% content_for :cover do %>
+    <div class="cover">
+      <div class="cover-inner">
+        <div class="cover-contents">
+          <h1>写真を見せよう！</h1>
             <%= link_to 'Photoshareを始める', signup_path, class: 'btn btn-success btn-lg' %>
-          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
+<% else %>
+  <%= render 'photos/photos', photos: @photos %>
 <% end %>
-
-<p>テスト</p>

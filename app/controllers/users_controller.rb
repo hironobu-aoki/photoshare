@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show]
   def show
     @user = User.find(params[:id])
+    @photos = current_user.photos.order('created_at DESC')
   end
 
   def new
@@ -19,7 +20,13 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
+  
+  
+  def favorite_photos
+    @user = User.find(params[:id])
+    @favorite_photos = @user.favorite_photos
+  end
+  
   private
 
   def user_params
