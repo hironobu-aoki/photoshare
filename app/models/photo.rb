@@ -6,7 +6,7 @@ class Photo < ApplicationRecord
   validates :image, presence: true
   validates :photo_comment, presence: false, length: { maximum: 255 }
   
-  has_many :user_likes
+  has_many :user_likes, dependent: :destroy
   has_many :favorite_users, through: :user_likes, source: :user
   
 end

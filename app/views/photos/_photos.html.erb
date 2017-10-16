@@ -11,10 +11,16 @@
               <p class="photo-comment"><%= photo.photo_comment %></p>
             </div>
             <div class="panel-under text-right" >
-              <p class="photo-created_at">Post at: <%= photo.created_at %></p>
+              <p class="photo-user">User name: <%= photo.user.name %></p>
+              <p class="photo-created_at">Post at: <%= l photo.created_at, format: :short %></p>
             </div>
           </div>
           <%= render 'user_likes/like_button', photo: photo %>
+          <% if current_user == photo.user %>
+            <%= link_to 'Show', photo %>
+            <%= link_to 'Edit', edit_photo_path(photo) %></td>
+            <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </div>
       </div>
     <% end %>
